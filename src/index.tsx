@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 type AllowedInputTypes = 'password' | 'text' | 'number' | 'tel';
 
@@ -67,18 +67,18 @@ const OTPInput = ({
   inputStyle,
   skipDefaultStyles = false,
 }: OTPInputProps) => {
-  const [activeInput, setActiveInput] = React.useState(0);
-  const inputRefs = React.useRef<Array<HTMLInputElement | null>>([]);
+  const [activeInput, setActiveInput] = useState(0);
+  const inputRefs = useRef<Array<HTMLInputElement | null>>([]);
 
   const getOTPValue = () => (value ? value.toString().split('') : []);
 
   const isInputNum = inputType === 'number' || inputType === 'tel';
 
-  React.useEffect(() => {
+  useEffect(() => {
     inputRefs.current = inputRefs.current.slice(0, numInputs);
   }, [numInputs]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (shouldAutoFocus) {
       inputRefs.current[0]?.focus();
     }
@@ -250,7 +250,7 @@ const OTPInput = ({
               onBlur: handleBlur,
               onKeyDown: handleKeyDown,
               onPaste: handlePaste,
-              autoComplete: 'off',
+              autoComplete: 'one-time-code',
               'aria-label': `Please enter OTP character ${index + 1}`,
               style: Object.assign(
                 !skipDefaultStyles ? ({ width: '1em', textAlign: 'center' } as const) : {},
