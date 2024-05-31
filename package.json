@@ -6,7 +6,7 @@
   "module": "lib/index.esm.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "build": "rollup -c",
+    "build": "rollup -c --bundleConfigAsCjs",
     "format": "prettier --write \"**/*.{html,css,js,jsx}\"",
     "lint": "eslint 'src/**/*.{js,jsx}' --quiet",
     "lint:fix": "eslint 'src/**/*.{js,jsx}' --fix",
@@ -25,9 +25,11 @@
     "react-dom": ">=16.8.6 || ^17.0.0 || ^18.0.0"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.8",
+    "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "11.0.0",
-    "@types/react": "18.0.28",
-    "@types/react-dom": "18.0.11",
+    "@types/react": "18.2.64",
+    "@types/react-dom": "18.2.25",
     "@typescript-eslint/eslint-plugin": "5.55.0",
     "@typescript-eslint/parser": "5.55.0",
     "concurrently": "6.2.0",
@@ -38,13 +40,15 @@
     "eslint-plugin-prettier": "3.4.0",
     "eslint-plugin-react": "7.23.2",
     "eslint-plugin-react-hooks": "4.2.0",
-    "gh-pages": "3.2.3",
+    "gh-pages": "^6.1.1",
     "prettier": "2.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "rollup": "2.79.1",
-    "rollup-plugin-peer-deps-external": "2.2.4",
-    "typescript": "5.0.2"
+    "rollup": "^4.18.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "typescript": "^5.4.5"
   },
   "author": "Devfolio <engineering@devfolio.co> (https://devfolio.co)",
   "license": "MIT",
