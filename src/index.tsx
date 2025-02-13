@@ -112,7 +112,7 @@ const OTPInput = ({
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { nativeEvent } = event;
+    // const { nativeEvent } = event;
     const value = event.target.value;
 
     if (!isInputValueValid(value)) {
@@ -127,14 +127,13 @@ const OTPInput = ({
         }
       }
 
-      // @ts-expect-error - This was added previously to handle and edge case
       // for dealing with keyCode "229 Unidentified" on Android. Check if this is
       // still needed.
-      if (nativeEvent.data === null && nativeEvent.inputType === 'deleteContentBackward') {
-        event.preventDefault();
-        changeCodeAtFocus('');
-        focusInput(activeInput - 1);
-      }
+    //   if (nativeEvent.data === null && nativeEvent.inputType === 'deleteContentBackward') {
+    //     event.preventDefault();
+    //     changeCodeAtFocus('');
+    //     focusInput(activeInput - 1);
+    //   }
 
       // Clear the input if it's not valid value because firefox allows
       // pasting non-numeric characters in a number type input
@@ -244,7 +243,9 @@ const OTPInput = ({
             {
               value: getOTPValue()[index] ?? '',
               placeholder: getPlaceholderValue()?.[index] ?? undefined,
-              ref: (element) => (inputRefs.current[index] = element),
+              ref: (element) => {
+				inputRefs.current[index] = element
+			  },
               onChange: handleChange,
               onFocus: (event) => handleFocus(event)(index),
               onBlur: handleBlur,
